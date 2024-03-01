@@ -14,8 +14,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config --global user.name "8-ctrl"
-          git config --global user.email "neelpatel1029@gmail.com"
+          git config --global user.email "${{ github.event.head_commit.author.email }}"
+          git config --global user.name "${{ github.event.head_commit.author.name }}"
 
       - name: Clone Documentation Repository
         run: |
