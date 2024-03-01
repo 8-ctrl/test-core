@@ -19,8 +19,7 @@ jobs:
 
       - name: Clone Documentation Repository
         run: |
-
-          git clone https://github.com/8-ctrl/test-docs.git
+          git clone git@github.com:{{ github.event.head_commit.author.name }}/{test-docs}.git
       - name: Copy Updated Files
         run: |
           mkdir -p DOCUMENTATION-REPOSITORY
