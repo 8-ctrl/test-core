@@ -22,6 +22,7 @@ jobs:
           git clone https://github.com/8-ctrl/test-core.git
       - name: Copy Updated Files
         run: |
+          mkdir -p DOCUMENTATION-REPOSITORY
           cp -r docs/* DOCUMENTATION-REPOSITORY/
 
       - name: Commit and Push Changes
