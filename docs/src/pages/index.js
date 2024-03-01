@@ -11,7 +11,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout title={`1Zelthy Docs`} description="Zelthy Docs">
+    <Layout title={`Zelthy Docs test`} description="Zelthy Docs">
       <main>
         {/* <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100vh" }}>
         <img src={ZelthyLandingPageBgImg} />
