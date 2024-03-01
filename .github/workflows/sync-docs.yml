@@ -19,8 +19,7 @@ jobs:
 
       - name: Clone Documentation Repository
         run: |
-          git clone git@github.com:8-ctrl/test-docs.git
-
+          git clone https://github.com/8-ctrl/test-core.git
       - name: Copy Updated Files
         run: |
           cp -r docs/* DOCUMENTATION-REPOSITORY/
