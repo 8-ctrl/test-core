@@ -1,0 +1,33 @@
+name: Sync Docs
+
+on:
+  push:
+    paths:
+      - "docs/**"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Core Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "8-ctrl"
+          git config --global user.email "neelpatel1029@gmail.com"
+
+      - name: Clone Documentation Repository
+        run: |
+          git clone https://github.com/8-ctrl/test-docs.git
+
+      - name: Copy Updated Files
+        run: |
+          cp -r docs/* DOCUMENTATION-REPOSITORY/
+
+      - name: Commit and Push Changes
+        run: |
+          cd DOCUMENTATION-REPOSITORY
+          git add .
+          git commit -m "Update docs from core repository"
+          git push
