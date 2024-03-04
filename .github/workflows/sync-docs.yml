@@ -25,7 +25,7 @@ jobs:
         #   GH_TOKEN: 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
         run: |
           git config --global --list
-          git clone https://USERNAME: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@github.com/8-ctrl/test-docs.git          
+          git clone https://8-ctrl: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@github.com/8-ctrl/test-docs.git          
           cd test-docs
           git config credential.helper 'cache --timeout=3600'
           git config user.email "${{ github.event.head_commit.author.email }}"
