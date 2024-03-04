@@ -17,9 +17,18 @@ jobs:
           git config --global user.email "${{ github.event.head_commit.author.email }}"
           git config --global user.name "${{ github.event.head_commit.author.name }}"
 
+      # - name: Clone Documentation Repository
+      #   run: |
+      #     git clone https://github.com/8-ctrl/test-docs.git
       - name: Clone Documentation Repository
+        env:
+          GH_TOKEN: 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
         run: |
           git clone https://github.com/8-ctrl/test-docs.git
+          cd test-docs
+          git config credential.helper 'cache --timeout=3600'
+          git config user.email "${{ github.event.head_commit.author.email }}"
+          git config user.name "${{ github.event.head_commit.author.name }}"
       - name: Copy Updated Files
         run: |
           mkdir -p DOCUMENTATION-REPOSITORY
