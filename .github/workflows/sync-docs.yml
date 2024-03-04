@@ -24,6 +24,7 @@ jobs:
         env:
           GH_TOKEN: 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
         run: |
+          git config --global --list
           git clone https://github.com/8-ctrl/test-docs.git
           cd test-docs
           git config credential.helper 'cache --timeout=3600'
