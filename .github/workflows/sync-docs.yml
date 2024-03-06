@@ -8,8 +8,8 @@ on:
     
 
 jobs:
-  # sync:
-  #   runs-on: ubuntu-latest
+  sync:
+    runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout Core Repository
   #       uses: actions/checkout@v2
