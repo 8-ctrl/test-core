@@ -6,38 +6,58 @@ on:
       - "docs/**"
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Core Repository
-        uses: actions/checkout@v2
+  # sync:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout Core Repository
+  #       uses: actions/checkout@v2
+  #       with:
+  #         repository: 8-ctrl/test-docs
+  #         token: ${{ secrets.GH_PAT}}
 
-      - name: Setup Git
-        run: |
-          git config --global user.email "${{ github.event.head_commit.author.email }}"
-          git config --global user.name "${{ github.event.head_commit.author.name }}"
+  #     - name: Setup Git
+  #       run: |
+  #         git config --global user.email "${{ github.event.head_commit.author.email }}"
+  #         git config --global user.name "${{ github.event.head_commit.author.name }}"
 
-      # - name: Clone Documentation Repository
-      #   run: |
-      #     git clone https://github.com/8-ctrl/test-docs.git
-      - name: Clone Documentation Repository
-        # env:
-        #   GH_TOKEN: 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
-        run: |
-          git config --global --list
-          git clone https://8-ctrl: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@github.com/8-ctrl/test-docs.git          
-          cd test-docs
-          git config credential.helper 'cache --timeout=3600'
-          git config user.email "${{ github.event.head_commit.author.email }}"
-          git config user.name "${{ github.event.head_commit.author.name }}"
-      - name: Copy Updated Files
-        run: |
-          mkdir -p DOCUMENTATION-REPOSITORY
-          cp -r docs/* DOCUMENTATION-REPOSITORY/
+  #     # - name: Clone Documentation Repository
+  #     #   run: |
+  #     #     git clone https://github.com/8-ctrl/test-docs.git
+  #     - name: Clone Documentation Repository
+  #       env:
+  #         GH_TOKEN: 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
+  #       run: |
+  #         git config --global --list
+  #         git clone https://github.com/8-ctrl/test-docs.git
+  #         cd docs
+  #         git config credential.helper 'cache --timeout=3600'
+  #         git config user.email "${{ github.event.head_commit.author.email }}"
+  #         git config user.name "${{ github.event.head_commit.author.name }}"
+  #     - name: Copy Updated Files
+  #       run: |
+  #         mkdir -p DOCUMENTATION-REPOSITORY
+  #         cp -r docs/* DOCUMENTATION-REPOSITORY/
 
-      - name: Commit and Push Changes
-        run: |
-          cd DOCUMENTATION-REPOSITORY
-          git add .
-          git commit -m "Update docs from core repository"
-          git push
+  #     - name: Commit and Push Changes
+  #       run: |
+  #         cd DOCUMENTATION-REPOSITORY
+  #         git add .
+  #         git commit -m "Update docs from core repository"
+  #         git push
+        steps:
+          - uses: actions/checkout@v2
+          # - name: Copy Updated Files
+          # run: |
+          # mkdir -p DOCUMENTATION-REPOSITORY
+          # cp -r docs/* DOCUMENTATION-REPOSITORY/ 
+                            
+          - name: Pushes to another repository
+          uses: cpina/github-action-push-to-another-repository@main
+          env:
+            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          with:
+            source-directory: 'docs'
+            destination-github-username: '8-ctrl'
+            destination-repository-name: 'test-docs'
+            user-email: neelpatel1029@gmail.com
+            target-branch: main
