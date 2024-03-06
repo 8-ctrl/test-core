@@ -2,7 +2,7 @@ name: Sync Docs
 
 on:
   push:
-    branch: main
+    # branch: main
     paths:
       - "docs/**"
     
@@ -10,6 +10,19 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+
+        - name: Pushes to another repository
+          uses: cpina/github-action-push-to-another-repository@main
+          env:
+            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          with:
+            source-directory: 'docs'
+            destination-github-username: '8-ctrl'
+            destination-repository-name: 'test-docs'
+            user-email: neelpatel1029@gmail.com
+            target-branch: main
   #   steps:
   #     - name: Checkout Core Repository
   #       uses: actions/checkout@v2
@@ -46,20 +59,3 @@ jobs:
   #         git add .
   #         git commit -m "Update docs from core repository"
   #         git push
-        steps:
-          - uses: actions/checkout@v2
-          # - name: Copy Updated Files
-          # run: |
-          # mkdir -p DOCUMENTATION-REPOSITORY
-          # cp -r docs/* DOCUMENTATION-REPOSITORY/ 
-                            
-          - name: Pushes to another repository
-          uses: cpina/github-action-push-to-another-repository@main
-          env:
-            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-          with:
-            source-directory: 'docs'
-            destination-github-username: '8-ctrl'
-            destination-repository-name: 'test-docs'
-            user-email: neelpatel1029@gmail.com
-            target-branch: main
