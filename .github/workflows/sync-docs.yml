@@ -2,8 +2,10 @@ name: Sync Docs
 
 on:
   push:
+    branch: main
     paths:
       - "docs/**"
+    
 
 jobs:
   # sync:
