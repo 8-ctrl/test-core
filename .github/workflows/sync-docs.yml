@@ -22,7 +22,7 @@ jobs:
           source-directory: "docs"
           destination-github-username: "8-ctrl"
           destination-repository-name: "test-docs"
-          user-email: neelpatel1029@gmail.com
+          # user-email: neelpatel1029@gmail.com
           target-branch: main
 
   #   steps:
